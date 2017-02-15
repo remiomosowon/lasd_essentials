@@ -1,7 +1,9 @@
 import unittest
 
 class Player(object):
-    pass
+    def __init__(self, die1, die2):
+        self.die1 = die1
+        self.die2 = die2
 
 class Board(object):
     pass
@@ -26,7 +28,8 @@ class Game(object):
             raise Exception
 
         for x in range(num_players):
-            self.players.append(Player())
+            self.players.append(Player(self.die1, self.die2))
+
 
         self.rounds = num_rounds
 
@@ -64,3 +67,12 @@ class GameTest(unittest.TestCase):
     def test_initialise_simple_game_with_too_many_rounds(self):
         with self.assertRaises(Exception):
             self.game.initialise(num_players=2, num_rounds=100)
+
+    def test_initialise_simple_game_players_have_dice(self):
+        self.game.initialise(num_players=2, num_rounds=1)
+
+        self.assertIs(self.game.players[0].die1, self.game.die1)
+        self.assertIs(self.game.players[0].die2, self.game.die2)
+
+        self.assertIs(self.game.players[1].die1, self.game.die1)
+        self.assertIs(self.game.players[1].die2, self.game.die2)
