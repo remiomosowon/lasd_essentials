@@ -19,3 +19,8 @@ def step_when_play_game(context):
 @then('the game result will be game ended after {num_turns} turns')
 def step_then_game_result(context, num_turns):
     assert context.game_result == "game ended after {} turns".format(num_turns)
+
+
+@then('the game result will be error: {error_message}')
+def step_then_game_error(context, error_message):
+    assert context.game_result == error_message
