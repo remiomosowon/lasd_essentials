@@ -19,8 +19,9 @@ class Game(object):
         self.rounds = 0
 
     def initialise(self, num_players, num_rounds):
-        self.players.append(Player())
-        self.players.append(Player())
+        for x in range(num_players):
+            self.players.append(Player())
+
         self.rounds = num_rounds
 
 class GameTest(unittest.TestCase):
