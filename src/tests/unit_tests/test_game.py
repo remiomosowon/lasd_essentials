@@ -22,6 +22,9 @@ class Game(object):
         if num_players < 2 or num_players > 8:
             raise Exception
 
+        if num_rounds < 1:
+            raise Exception
+
         for x in range(num_players):
             self.players.append(Player())
 
@@ -54,3 +57,6 @@ class GameTest(unittest.TestCase):
         with self.assertRaises(Exception):
             self.game.initialise(num_players=9, num_rounds=1)
 
+    def test_initialise_simple_game_with_not_enough_rounds(self):
+        with self.assertRaises(Exception):
+            self.game.initialise(num_players=2, num_rounds=0)
