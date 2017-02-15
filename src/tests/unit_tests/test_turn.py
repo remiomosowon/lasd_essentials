@@ -18,20 +18,16 @@ class TurnTest(unittest.TestCase):
 
     def test_take_turn_at_position_1(self):
         self.player.set_position(1)
-        self.player.die1.roll()
-        self.player.die2.roll()
-        fv1 = self.player.die1.get_face_value()
-        fv2 = self.player.die2.get_face_value()
+        fv1, fv2 = self.player.get_roll_dice()
         current_position = self.player.get_position()
+
         position = self.player.board.get_new_position(fv1 + fv2, current_position)
+
         self.assertEquals(position, 3)
 
     def test_take_turn_at_position_40(self):
         self.player.set_position(40)
-        self.player.die1.roll()
-        self.player.die2.roll()
-        fv1 = self.player.die1.get_face_value()
-        fv2 = self.player.die2.get_face_value()
+        fv1, fv2 = self.player.get_roll_dice()
         current_position = self.player.get_position()
         position = self.player.board.get_new_position(fv1 + fv2, current_position)
         self.assertEquals(position, 2)

@@ -3,6 +3,13 @@ class Player(object):
         self.die1 = die1
         self.die2 = die2
 
+    def get_roll_dice(self):
+        self.die1.roll()
+        self.die2.roll()
+        fv1 = self.die1.get_face_value()
+        fv2 = self.die2.get_face_value()
+        return fv1, fv2
+
     def take_turn(self):
         pass
 
