@@ -16,12 +16,10 @@ class Player(object):
         self.board = board
 
 class Board(object):
-    def get_new_position(self, face_value, current_position):
-        new_position = face_value + current_position
-        if new_position > 40:
-            new_position = new_position - 40
+    BOARD_SIZE = 40
 
-        return new_position
+    def get_new_position(self, face_value, current_position):
+        return (face_value + current_position) % Board.BOARD_SIZE
 
 class Die(object):
     def roll(self):
