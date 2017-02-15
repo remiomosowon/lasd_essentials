@@ -3,11 +3,32 @@ class Player(object):
         self.die1 = die1
         self.die2 = die2
 
+    def take_turn(self):
+        pass
+
+    def set_position(self, position):
+        self.position = position
+
+    def get_position(self):
+        return self.position
+
+    def set_board(self, board):
+        self.board = board
+
 class Board(object):
-    pass
+    def get_new_position(self, face_value, current_position):
+        new_position = face_value + current_position
+        if new_position > 40:
+            new_position = new_position - 40
+
+        return new_position
 
 class Die(object):
-    pass
+    def roll(self):
+        pass
+
+    def get_face_value(self):
+        return 0
 
 class Game(object):
 
