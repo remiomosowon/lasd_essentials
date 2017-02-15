@@ -19,7 +19,7 @@ class Game(object):
         self.rounds = 0
 
     def initialise(self, num_players, num_rounds):
-        if num_players < 2:
+        if num_players < 2 or num_players > 8:
             raise Exception
 
         for x in range(num_players):
@@ -49,4 +49,8 @@ class GameTest(unittest.TestCase):
         with self.assertRaises(Exception):
             self.game.initialise(num_players=1, num_rounds=1)
 
+    def test_initialise_simple_game_with_too_many_players(self):
+
+        with self.assertRaises(Exception):
+            self.game.initialise(num_players=9, num_rounds=1)
 
