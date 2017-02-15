@@ -3,7 +3,7 @@ use_step_matcher("parse")
 
 @given('we have a player position {initial_position}')
 def step_given_player_position(context, initial_position):
-    context.player.token_position = initial_position
+    context.player.set_position(initial_position)
 
 
 @when('player moves token by total dice face value of {dice_value}')

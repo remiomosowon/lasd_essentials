@@ -1,9 +1,14 @@
 import unittest
 
-from game import *
+from pathlib import Path
+import sys
+
+sys.path.append(str(Path(__file__).parent.parent.parent))
+
+from monopoly.game import *
+
 
 class GameTest(unittest.TestCase):
-
     def setUp(self):
         self.game = Game()
 
@@ -43,3 +48,8 @@ class GameTest(unittest.TestCase):
 
         self.assertIs(self.game.players[1].die1, self.game.die1)
         self.assertIs(self.game.players[1].die2, self.game.die2)
+
+    def test_initiliase_simple_game_players_have_board(self):
+        self.game.initialise(num_players=2, num_rounds=1)
+
+        self.assertIs(self.game.players[0].board, self.game.board)
