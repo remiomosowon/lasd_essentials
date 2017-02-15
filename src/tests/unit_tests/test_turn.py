@@ -4,11 +4,11 @@ from game import Die, Player, Board
 
 class DeterministicDie(Die):
 
-    def __init__(self, value):
-        self.value = value
-
     def get_face_value(self):
         return self.value
+
+    def set_value(self, value):
+        self.value = value
 
 
 class TurnTest(unittest.TestCase):
@@ -17,15 +17,20 @@ class TurnTest(unittest.TestCase):
     START_SQUARE = 1
     TWO_SQUARES_AFTER_START = 3
     LAST_SQUARE = 40
+    MIN_DIE_VALUE = 1
+    MAX_DIE_VALUE = 6
+    MAX_SQUARE_REACHABLE_FROM_START = 13
 
     def setUp(self):
-        die1 = DeterministicDie(1)
-        die2 = DeterministicDie(1)
+        self.die1 = DeterministicDie()
+        self.die2 = DeterministicDie()
         board = Board()
-        self.player = Player(die1, die2)
+        self.player = Player(self.die1, self.die2)
         self.player.set_board(board)
 
     def test_take_turn_from_start_square(self):
+        self.die1.set_value(TurnTest.MIN_DIE_VALUE)
+        self.die2.set_value(TurnTest.MIN_DIE_VALUE)
         self.player.set_position(TurnTest.START_SQUARE)
 
         position = self.player.take_turn()
@@ -33,8 +38,19 @@ class TurnTest(unittest.TestCase):
         self.assertEquals(position, TurnTest.TWO_SQUARES_AFTER_START)
 
     def test_take_turn_from_last_square(self):
+        self.die1.set_value(TurnTest.MIN_DIE_VALUE)
+        self.die2.set_value(TurnTest.MIN_DIE_VALUE)
         self.player.set_position(TurnTest.LAST_SQUARE)
 
         position = self.player.take_turn()
 
         self.assertEquals(position, TurnTest.ONE_SQUARE_AFTER_START)
+
+    def test_take_turn_with_max_dice_roll(self):
+        self.die1.set_value(TurnTest.MAX_DIE_VALUE)
+        self.die2.set_value(TurnTest.MAX_DIE_VALUE)
+        self.player.set_position(TurnTest.START_SQUARE)
+
+        position = self.player.take_turn()
+
+        self.assertEquals(position, TurnTest.MAX_SQUARE_REACHABLE_FROM_START)
