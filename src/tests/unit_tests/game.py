@@ -3,7 +3,7 @@ class Player(object):
         self.die1 = die1
         self.die2 = die2
 
-    def get_roll_dice(self):
+    def roll_dice(self):
         self.die1.roll()
         self.die2.roll()
         fv1 = self.die1.get_face_value()
@@ -18,6 +18,11 @@ class Player(object):
 
     def get_position(self):
         return self.position
+
+    def take_turn(self):
+        fv1, fv2 = self.roll_dice()
+        current_position = self.get_position()
+        return self.board.get_new_position(fv1 + fv2, current_position)
 
     def set_board(self, board):
         self.board = board
