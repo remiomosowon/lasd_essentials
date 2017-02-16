@@ -1,3 +1,5 @@
+.PHONY: test unit behave acceptance tests
+
 help:
 	@echo "test - run unit tests with unittest"
 	@echo "behave - run acceptance tests with behave"
