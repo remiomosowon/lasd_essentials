@@ -1,7 +1,7 @@
 tests: unit behave
 
 unit:
-	python -m unittest discover src/tests/unit_tests
+	python -m unittest discover monopoly/tests/unit_tests
 
 behave:
-	behave src/tests/acceptance_tests
+	behave monopoly/tests/acceptance_tests

@@ -1,7 +1,3 @@
-from pathlib import Path
-import sys
-sys.path.append(str(Path(__file__).parent.parent.parent))
-
 from monopoly.game import Game
 
 def before_scenario(context, scenario):
