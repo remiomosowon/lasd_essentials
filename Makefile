@@ -1,7 +1,14 @@
-tests: unit behave
+help:
+	@echo "test - run unit tests with unittest"
+	@echo "behave - run acceptance tests with behave"
+	@echo "tests - run both unit and acceptance tests"
 
+test: unit
 unit:
-	python -m unittest discover monopoly/tests/unit_tests
+	python -m unittest discover -v monopoly/tests/unit_tests
 
-behave:
+behave: acceptance
+acceptance:
 	behave monopoly/tests/acceptance_tests
+
+tests: unit acceptance
